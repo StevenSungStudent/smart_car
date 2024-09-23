@@ -1,0 +1,93 @@
+[0.061s] Invoking command in '/home/steven/Documents/GitHub/robot_sim/build/robot_arm_sim': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /home/steven/Documents/GitHub/robot_sim/robot_arm_sim -DCMAKE_INSTALL_PREFIX=/home/steven/Documents/GitHub/robot_sim/install/robot_arm_sim
+[0.500s] -- The C compiler identification is GNU 11.4.0
+[0.894s] -- The CXX compiler identification is GNU 11.4.0
+[0.946s] -- Detecting C compiler ABI info
+[1.316s] -- Detecting C compiler ABI info - done
+[1.373s] -- Check for working C compiler: /usr/bin/cc - skipped
+[1.375s] -- Detecting C compile features
+[1.378s] -- Detecting C compile features - done
+[1.395s] -- Detecting CXX compiler ABI info
+[1.838s] -- Detecting CXX compiler ABI info - done
+[1.913s] -- Check for working CXX compiler: /usr/bin/c++ - skipped
+[1.915s] -- Detecting CXX compile features
+[1.918s] -- Detecting CXX compile features - done
+[1.941s] -- Found ament_cmake: 1.3.10 (/opt/ros/humble/share/ament_cmake/cmake)
+[2.769s] -- Found Python3: /usr/bin/python3 (found version "3.10.12") found components: Interpreter 
+[3.220s] -- Found sensor_msgs: 4.2.4 (/opt/ros/humble/share/sensor_msgs/cmake)
+[3.438s] -- Found rosidl_generator_c: 3.1.5 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+[3.476s] -- Found rosidl_adapter: 3.1.5 (/opt/ros/humble/share/rosidl_adapter/cmake)
+[3.523s] -- Found rosidl_generator_cpp: 3.1.5 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+[3.597s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[3.691s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[4.064s] -- Found rclcpp: 16.0.10 (/opt/ros/humble/share/rclcpp/cmake)
+[4.293s] -- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)
+[4.306s] -- Found rmw_fastrtps_cpp: 6.2.7 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)
+[4.783s] -- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "3.0.2")  
+[4.929s] -- Found FastRTPS: /opt/ros/humble/include  
+[5.163s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[5.207s] -- Looking for pthread.h
+[5.572s] -- Looking for pthread.h - found
+[5.573s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+[5.949s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+[5.955s] -- Found Threads: TRUE  
+[6.215s] -- Found tf2: 0.25.7 (/opt/ros/humble/share/tf2/cmake)
+[6.277s] -- Found tf2_ros: 0.25.7 (/opt/ros/humble/share/tf2_ros/cmake)
+[6.875s] -- Found ament_lint_auto: 0.12.11 (/opt/ros/humble/share/ament_lint_auto/cmake)
+[7.319s] -- Added test 'cppcheck' to perform static code analysis on C / C++ code
+[7.321s] -- Configured cppcheck include dirs: /home/steven/Documents/GitHub/robot_sim/robot_arm_sim/include/robot_arm_sim;$<BUILD_INTERFACE:/home/steven/Documents/GitHub/robot_sim/robot_arm_sim/include/robot_arm_sim>
+[7.321s] -- Configured cppcheck exclude dirs and/or files: 
+[7.326s] -- Added test 'flake8' to check Python code syntax and style conventions
+[7.333s] -- Added test 'lint_cmake' to check CMake code style
+[7.338s] -- Added test 'pep257' to check Python code against some of the docstring style conventions in PEP 257
+[7.360s] -- Added test 'uncrustify' to check C / C++ code style
+[7.361s] -- Configured uncrustify additional arguments: 
+[7.367s] -- Added test 'xmllint' to check XML markup files
+[7.375s] -- Configuring done
+[7.465s] -- Generating done
+[7.479s] -- Build files have been written to: /home/steven/Documents/GitHub/robot_sim/build/robot_arm_sim
+[7.529s] Invoked command in '/home/steven/Documents/GitHub/robot_sim/build/robot_arm_sim' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake /home/steven/Documents/GitHub/robot_sim/robot_arm_sim -DCMAKE_INSTALL_PREFIX=/home/steven/Documents/GitHub/robot_sim/install/robot_arm_sim
+[7.537s] Invoking command in '/home/steven/Documents/GitHub/robot_sim/build/robot_arm_sim': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/steven/Documents/GitHub/robot_sim/build/robot_arm_sim -- -j8 -l8
+[7.810s] [ 16%] [32mBuilding CXX object CMakeFiles/robot_arm_sim.dir/src/main.cpp.o[0m
+[7.815s] [ 33%] [32mBuilding CXX object CMakeFiles/robot_arm_sim.dir/src/RobotPosePublisher.cpp.o[0m
+[7.816s] [ 50%] [32mBuilding CXX object CMakeFiles/cup_pose_publisher.dir/src/CupMain.cpp.o[0m
+[7.818s] [ 66%] [32mBuilding CXX object CMakeFiles/cup_pose_publisher.dir/src/CupPosePublisher.cpp.o[0m
+[40.218s] [ 83%] [32m[1mLinking CXX executable cup_pose_publisher[0m
+[41.811s] [ 83%] Built target cup_pose_publisher
+[68.089s] [100%] [32m[1mLinking CXX executable robot_arm_sim[0m
+[70.916s] [100%] Built target robot_arm_sim
+[70.967s] Invoked command in '/home/steven/Documents/GitHub/robot_sim/build/robot_arm_sim' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --build /home/steven/Documents/GitHub/robot_sim/build/robot_arm_sim -- -j8 -l8
+[71.156s] Invoking command in '/home/steven/Documents/GitHub/robot_sim/build/robot_arm_sim': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/steven/Documents/GitHub/robot_sim/build/robot_arm_sim
+[71.204s] -- Install configuration: ""
+[71.205s] -- Installing: /home/steven/Documents/GitHub/robot_sim/install/robot_arm_sim/include
+[71.206s] -- Installing: /home/steven/Documents/GitHub/robot_sim/install/robot_arm_sim/include/robot_arm_sim
+[71.207s] -- Installing: /home/steven/Documents/GitHub/robot_sim/install/robot_arm_sim/include/robot_arm_sim/RobotPosePublisher.hpp
+[71.207s] -- Installing: /home/steven/Documents/GitHub/robot_sim/install/robot_arm_sim/include/robot_arm_sim/CupPosePublisher.hpp
+[71.208s] -- Installing: /home/steven/Documents/GitHub/robot_sim/install/robot_arm_sim/share/robot_arm_sim/launch
+[71.209s] -- Installing: /home/steven/Documents/GitHub/robot_sim/install/robot_arm_sim/share/robot_arm_sim/launch/simulation.launch.py
+[71.210s] -- Installing: /home/steven/Documents/GitHub/robot_sim/install/robot_arm_sim/share/robot_arm_sim/rviz
+[71.211s] -- Installing: /home/steven/Documents/GitHub/robot_sim/install/robot_arm_sim/share/robot_arm_sim/rviz/urdf_config.rviz
+[71.212s] -- Installing: /home/steven/Documents/GitHub/robot_sim/install/robot_arm_sim/share/robot_arm_sim/urdf
+[71.212s] -- Installing: /home/steven/Documents/GitHub/robot_sim/install/robot_arm_sim/share/robot_arm_sim/urdf/lynxmotion_arm.urdf
+[71.213s] -- Installing: /home/steven/Documents/GitHub/robot_sim/install/robot_arm_sim/share/robot_arm_sim/urdf/cup.urdf
+[71.213s] -- Installing: /home/steven/Documents/GitHub/robot_sim/install/robot_arm_sim/lib/robot_arm_sim/robot_arm_sim
+[71.232s] -- Set runtime path of "/home/steven/Documents/GitHub/robot_sim/install/robot_arm_sim/lib/robot_arm_sim/robot_arm_sim" to ""
+[71.232s] -- Installing: /home/steven/Documents/GitHub/robot_sim/install/robot_arm_sim/lib/robot_arm_sim/cup_pose_publisher
+[71.237s] -- Set runtime path of "/home/steven/Documents/GitHub/robot_sim/install/robot_arm_sim/lib/robot_arm_sim/cup_pose_publisher" to ""
+[71.238s] -- Up-to-date: /home/steven/Documents/GitHub/robot_sim/install/robot_arm_sim/share/robot_arm_sim/urdf/lynxmotion_arm.urdf
+[71.239s] -- Up-to-date: /home/steven/Documents/GitHub/robot_sim/install/robot_arm_sim/share/robot_arm_sim/urdf/cup.urdf
+[71.240s] -- Installing: /home/steven/Documents/GitHub/robot_sim/install/robot_arm_sim/share/ament_index/resource_index/package_run_dependencies/robot_arm_sim
+[71.240s] -- Installing: /home/steven/Documents/GitHub/robot_sim/install/robot_arm_sim/share/ament_index/resource_index/parent_prefix_path/robot_arm_sim
+[71.242s] -- Installing: /home/steven/Documents/GitHub/robot_sim/install/robot_arm_sim/share/robot_arm_sim/environment/ament_prefix_path.sh
+[71.244s] -- Installing: /home/steven/Documents/GitHub/robot_sim/install/robot_arm_sim/share/robot_arm_sim/environment/ament_prefix_path.dsv
+[71.245s] -- Installing: /home/steven/Documents/GitHub/robot_sim/install/robot_arm_sim/share/robot_arm_sim/environment/path.sh
+[71.247s] -- Installing: /home/steven/Documents/GitHub/robot_sim/install/robot_arm_sim/share/robot_arm_sim/environment/path.dsv
+[71.247s] -- Installing: /home/steven/Documents/GitHub/robot_sim/install/robot_arm_sim/share/robot_arm_sim/local_setup.bash
+[71.248s] -- Installing: /home/steven/Documents/GitHub/robot_sim/install/robot_arm_sim/share/robot_arm_sim/local_setup.sh
+[71.249s] -- Installing: /home/steven/Documents/GitHub/robot_sim/install/robot_arm_sim/share/robot_arm_sim/local_setup.zsh
+[71.250s] -- Installing: /home/steven/Documents/GitHub/robot_sim/install/robot_arm_sim/share/robot_arm_sim/local_setup.dsv
+[71.251s] -- Installing: /home/steven/Documents/GitHub/robot_sim/install/robot_arm_sim/share/robot_arm_sim/package.dsv
+[71.252s] -- Installing: /home/steven/Documents/GitHub/robot_sim/install/robot_arm_sim/share/ament_index/resource_index/packages/robot_arm_sim
+[71.253s] -- Installing: /home/steven/Documents/GitHub/robot_sim/install/robot_arm_sim/share/robot_arm_sim/cmake/robot_arm_simConfig.cmake
+[71.254s] -- Installing: /home/steven/Documents/GitHub/robot_sim/install/robot_arm_sim/share/robot_arm_sim/cmake/robot_arm_simConfig-version.cmake
+[71.254s] -- Installing: /home/steven/Documents/GitHub/robot_sim/install/robot_arm_sim/share/robot_arm_sim/package.xml
+[71.264s] Invoked command in '/home/steven/Documents/GitHub/robot_sim/build/robot_arm_sim' returned '0': CMAKE_PREFIX_PATH=/opt/ros/humble /usr/bin/cmake --install /home/steven/Documents/GitHub/robot_sim/build/robot_arm_sim

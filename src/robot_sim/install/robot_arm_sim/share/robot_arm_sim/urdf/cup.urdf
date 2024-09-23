@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<robot name="cup">
+  <link name="cup_link">
+    <visual>
+      <geometry>
+        <cylinder length="0.08" radius="0.015"/>
+      </geometry>
+    </visual>
+  </link>
+</robot>
