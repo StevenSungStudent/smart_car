@@ -7,11 +7,23 @@
   <link name="base_link">
     <visual>
       <geometry>
-        <box size="0.17 0.257  0.01"/>
-        <origin xyz="0 0 0.032"/>
+        <!-- <box size="${wheelbase_width} ${wheelbase_length}  0.01"/>
+        <origin xyz="0 0 ${wheel_diameter / 2}"/> -->
       </geometry>
     </visual>
   </link>
+  <link name="chassis_link">
+    <visual>
+      <geometry>
+        <box size="0.17 0.257  0.01"/>
+      </geometry>
+    </visual>
+  </link>
+  <joint name="chassis_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="chassis_link"/>
+    <origin xyz="0 0 0.032"/>
+  </joint>
   <link name="front_left_wheel">
     <visual>
       <geometry>
@@ -22,7 +34,7 @@
   <joint name="front_left_wheel_joint" type="continuous">
     <parent link="base_link"/>
     <child link="front_left_wheel"/>
-    <origin rpy="0 1.5707963267948966 0" xyz="0.085 -0.1285 0.032"/>
+    <origin rpy="0 1.5707963267948966 0" xyz="0.11000000000000001 -0.1285 0.032"/>
   </joint>
   <link name="front_right_wheel">
     <visual>
@@ -34,7 +46,7 @@
   <joint name="front_right_wheel_joint" type="continuous">
     <parent link="base_link"/>
     <child link="front_right_wheel"/>
-    <origin rpy="0 1.5707963267948966 0" xyz="-0.085 -0.1285 0.032"/>
+    <origin rpy="0 1.5707963267948966 0" xyz="-0.11000000000000001 -0.1285 0.032"/>
   </joint>
   <link name="rear_left_wheel">
     <visual>
@@ -46,7 +58,7 @@
   <joint name="rear_left_wheel_joint" type="continuous">
     <parent link="base_link"/>
     <child link="rear_left_wheel"/>
-    <origin rpy="0 1.5707963267948966 0" xyz="0.085 0.1285 0.032"/>
+    <origin rpy="0 1.5707963267948966 0" xyz="0.11000000000000001 0.1285 0.032"/>
   </joint>
   <link name="rear_right_wheel">
     <visual>
@@ -58,6 +70,6 @@
   <joint name="rear_right_wheel_joint" type="continuous">
     <parent link="base_link"/>
     <child link="rear_right_wheel"/>
-    <origin rpy="0 1.5707963267948966 0" xyz="-0.085 0.1285 0.032"/>
+    <origin rpy="0 1.5707963267948966 0" xyz="-0.11000000000000001 0.1285 0.032"/>
   </joint>
 </robot>
