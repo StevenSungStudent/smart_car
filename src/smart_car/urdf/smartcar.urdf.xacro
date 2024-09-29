@@ -1,3 +1,5 @@
+<?xml version="1.0"?>
+
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="smartcar">
 
   <!--Xacro properties and macros--> 
@@ -28,10 +30,7 @@
 
   <!--Body--> 
   <link name="base_link">
-    <visual>
-      <geometry>
-      </geometry>
-    </visual>
+
   </link>
 
   <link name="chassis_link">
@@ -61,42 +60,48 @@
   <!--Sensors--> 
 
   <!--IMU-->
-  <link name="imu_link">
-    <!--TODO: add visual-->
+  <!-- <link name="imu_link">
+    <sensor name="imu_sensor" type="imu">
+      <always_on>true</always_on> -->
+      <!-- Publish at 30 hz -->
+      <!-- <update_rate>30</update_rate>
+      <plugin name="gazebo_ros_imu_sensor" filename="libgazebo_ros_imu_sensor.so">
+        <ros> -->
+          <!-- Will publish to /imu/data -->
+          <!-- <namespace>/imu</namespace>
+          <remapping>~/out:=data</remapping>
+        </ros>
+      </plugin>
+    </sensor>
   </link>
-  <!-- <joint name="imu_joint" type="fixed">
+
+  <joint name="imu_joint" type="fixed">
     <parent link="base_link" />
     <child link="imu_link"/>
     <origin xyz="0 0 ${wheel_diameter / 2}"/>
-  </joint>
+  </joint> -->
 
-  <gazebo reference="imu_link">
-    <sensor type="imu" name="imu_sensor">
-      <plugin name="gazebo_ros_imu_sensor" filename="libgazebo_ros_imu_sensor.so">
-      <topicName>imu_data</topicName>
-      <frame_name>imu_link</frame_name>
-      </plugin>
-    </sensor>
-  </gazebo> -->
+  
 
-  <!--LiDAR-->
-  <link name="sllidar_base_link">
-    <!--TODO: add visual-->
-  </link>
-  <!-- <joint name="lidar_joint" type="fixed">
+  <!-- LiDAR -->
+  <!-- <link name="sllidar_base_link"> -->
+    <!-- TODO: add visual for LiDAR -->
+  <!-- </link>
+
+  <joint name="lidar_joint" type="fixed">
     <parent link="base_link" />
     <child link="sllidar_base_link"/>
     <origin xyz="0 0 ${wheel_diameter / 2}"/>
   </joint>
+
   <gazebo reference="sllidar_base_link">
-    <sensor type="lidar" name="imu_sensor">
-      <plugin name="gazebo_ros_imu_sensor" filename="libgazebo_ros_ray_sensor.so">
-      <output_type>sensor_msgs/Laserscan</output_type>
-      <topicName>scan</topicName>
-      <frame_name>sllidar_base_link</frame_name>
+    <sensor type="ray" name="lidar_sensor">
+      <update_rate>30.0</update_rate>
+      <plugin name="gazebo_ros_ray_sensor" filename="libgazebo_ros_ray_sensor.so">
+        <topic>/scan</topic> 
+        <frameName>sllidar_base_link</frameName> 
       </plugin>
     </sensor>
   </gazebo> -->
-
 
 </robot>

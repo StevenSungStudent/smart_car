@@ -1,8 +1,9 @@
 import os
 from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument
+from launch.actions import DeclareLaunchArgument, ExecuteProcess, IncludeLaunchDescription
+from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.conditions import IfCondition, UnlessCondition
-from launch.substitutions import Command, LaunchConfiguration
+from launch.substitutions import Command, LaunchConfiguration, PythonExpression
 import launch_ros
 from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
@@ -11,21 +12,36 @@ def generate_launch_description():
 
   # Set the path to this package.
   pkg_share = FindPackageShare(package='smart_car').find('smart_car')
+  pkg_gazebo_ros = FindPackageShare(package='gazebo_ros').find('gazebo_ros')  
 
   # Set the path to the RViz configuration settings
   default_rviz_config_path = os.path.join(pkg_share, 'rviz/urdf_config.rviz')
 
   # Set the path to the URDF file
   default_urdf_model_path = os.path.join(pkg_share, 'urdf/smartcar.urdf')
+  
+  default_world_path = os.path.join(pkg_share, 'world/smalltown.world')
+
+  os.environ["GAZEBO_MODEL_PATH"] = default_urdf_model_path
+
+  # Pose where we want to spawn the robot
+  spawn_x_val = '0.0'
+  spawn_y_val = '0.0'
+  spawn_z_val = '0.0'
+  spawn_yaw_val = '0.00'
 
   ########### YOU DO NOT NEED TO CHANGE ANYTHING BELOW THIS LINE ##############  
   # Launch configuration variables specific to simulation
   gui = LaunchConfiguration('gui')
+  headless = LaunchConfiguration('headless')
+  robot_name_in_model = 'smart_car'
   urdf_model = LaunchConfiguration('urdf_model')
   rviz_config_file = LaunchConfiguration('rviz_config_file')
   use_robot_state_pub = LaunchConfiguration('use_robot_state_pub')
   use_rviz = LaunchConfiguration('use_rviz')
+  use_simulator = LaunchConfiguration('use_simulator')
   use_sim_time = LaunchConfiguration('use_sim_time')
+  world = LaunchConfiguration('world')
 
   # Declare the launch arguments  
   declare_urdf_model_path_cmd = DeclareLaunchArgument(
@@ -57,6 +73,21 @@ def generate_launch_description():
     name='use_sim_time',
     default_value='True',
     description='Use simulation (Gazebo) clock if true')
+  
+  declare_world_cmd = DeclareLaunchArgument(
+    name='world',
+    default_value=default_world_path,
+    description='Full path to the world model file to load')
+  
+  declare_use_simulator_cmd = DeclareLaunchArgument(
+    name='use_simulator',
+    default_value='True',
+    description='Whether to start the simulator')
+  
+  declare_simulator_cmd = DeclareLaunchArgument(
+    name='headless',
+    default_value='False',
+    description='Whether to execute gzclient')
    
   # Specify the actions
 
@@ -92,6 +123,31 @@ def generate_launch_description():
     output='screen',
     arguments=['-d', rviz_config_file])
   
+  # Launch Gazebo server
+  start_gazebo_server_cmd = IncludeLaunchDescription(
+    PythonLaunchDescriptionSource(os.path.join(pkg_gazebo_ros, 'launch', 'gzserver.launch.py')),
+    condition=IfCondition(use_simulator),
+    launch_arguments={'world': world}.items())
+  
+  # Launch Gazebo client
+  start_gazebo_client_cmd = IncludeLaunchDescription(
+    PythonLaunchDescriptionSource(os.path.join(pkg_gazebo_ros, 'launch', 'gzclient.launch.py')),
+    condition=IfCondition(PythonExpression([use_simulator, ' and not ', headless])))
+  
+  # Launch the robot
+  spawn_entity_cmd = Node(
+    package='gazebo_ros', 
+    executable='spawn_entity.py',
+    arguments=['-entity', robot_name_in_model, 
+                '-topic', 'robot_description',
+                    '-x', spawn_x_val,
+                    '-y', spawn_y_val,
+                    '-z', spawn_z_val,
+                    '-Y', spawn_yaw_val],
+                    output='screen',
+                    parameters=[{'robot_description': launch_ros.parameter_descriptions.ParameterValue(Command(['xacro ', urdf_model]), value_type=str)}]
+                  )
+  
   # Create the launch description and populate
   ld = LaunchDescription()
 
@@ -102,11 +158,17 @@ def generate_launch_description():
   ld.add_action(declare_use_robot_state_pub_cmd)  
   ld.add_action(declare_use_rviz_cmd) 
   ld.add_action(declare_use_sim_time_cmd)
+  ld.add_action(declare_use_simulator_cmd)
+  ld.add_action(declare_world_cmd)
+  ld.add_action(declare_simulator_cmd)
 
   # Add any actions
+  ld.add_action(start_gazebo_server_cmd)
+  ld.add_action(start_gazebo_client_cmd)
   ld.add_action(start_joint_state_publisher_cmd)
   ld.add_action(start_joint_state_publisher_gui_node)
   ld.add_action(start_robot_state_publisher_cmd)
   ld.add_action(start_rviz_cmd)
+  ld.add_action(spawn_entity_cmd)
 
   return ld

@@ -18,7 +18,7 @@ find_package(robot_state_publisher REQUIRED)
 
 include_directories(include)
 
-install( DIRECTORY launch rviz urdf
+install( DIRECTORY launch rviz urdf world
   DESTINATION share/${PROJECT_NAME})
 
 if(BUILD_TESTING)
