@@ -96,16 +96,22 @@
   <!--Sensors-->
   <!--IMU-->
   <link name="imu_link">
-    <inertial>
-      <mass value="0.05"/>
-      <origin xyz="0 0 0"/>
-    </inertial>
     <visual>
       <geometry>
         <box size="0.05 0.05 0.05"/>
       </geometry>
-      <material name="green"/>
     </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <box size="0.1 0.1 0.1"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.05"/>
+      <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.02"/>
+      <origin xyz="0 0 0"/>
+    </inertial>
   </link>
   <joint name="imu_joint" type="fixed">
     <parent link="base_link"/>
@@ -126,21 +132,27 @@
   </gazebo>
   <!-- LiDAR -->
   <link name="sllidar_base_link">
-    <inertial>
-      <mass value="0.05"/>
-      <origin xyz="0 0 0"/>
-    </inertial>
     <visual>
       <geometry>
         <cylinder length="0.1" radius="0.03"/>
       </geometry>
-      <material name="red"/>
     </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <cylinder length="0.1" radius="0.03"/>
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="0.05"/>
+      <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.02"/>
+      <origin xyz="0 0 0"/>
+    </inertial>
   </link>
   <joint name="lidar_joint" type="fixed">
     <parent link="base_link"/>
     <child link="sllidar_base_link"/>
-    <origin xyz="0 0 0.132"/>
+    <origin xyz="0 0.0985 0.132"/>
   </joint>
   <gazebo reference="sllidar_base_link">
     <sensor name="lidar_sensor" type="ray">
