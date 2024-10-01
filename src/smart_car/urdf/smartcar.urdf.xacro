@@ -23,6 +23,12 @@
           <cylinder radius="${wheel_diameter/2}" length="${wheel_width}"/>
         </geometry>
       </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <cylinder radius="${wheel_diameter/2}" length="${wheel_width}"/>
+        </geometry>
+      </collision>
     </link>
     <joint name="${prefix}_wheel_joint" type="continuous">
       <parent link="${parent}" />
@@ -40,7 +46,7 @@
     <inertial>
       <mass value="1.0"/> 
       <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.02"/>
-      <origin xyz="0 0 0"/>
+      <origin xyz="0 0 1"/>
     </inertial>
     <visual>
       <geometry>
@@ -137,13 +143,41 @@
   </joint>
 
   <gazebo reference="sllidar_base_link">
-    <sensor type="ray" name="lidar_sensor">
+    <!-- <sensor type="ray" name="lidar_sensor">
+      <visualize>true</visualize>
       <update_rate>30.0</update_rate>
       <plugin name="gazebo_ros_ray_sensor" filename="libgazebo_ros_ray_sensor.so">
         <topic>/scan</topic>
         <frameName>sllidar_base_link</frameName>
       </plugin>
-    </sensor>
+    </sensor> -->
+
+    <sensor name="lidar" type="ray">
+      <pose> 0 0 0 0 0 0 </pose>
+      <visualize>true</visualize>
+      <update_rate>10</update_rate>
+      <ray>
+          <scan>
+              <horizontal>
+                  <samples>360</samples>
+                  <min_angle>-3.14</min_angle>
+                  <max_angle>3.14</max_angle>
+              </horizontal>
+          </scan>
+          <range>
+              <min>0.3</min>
+              <max>12</max>
+          </range>
+      </ray>
+      <plugin name="lidar_plugin" filename="libgazebo_ros_ray_sensor.so">
+          <ros>
+              <argument>~/out:=scan</argument>
+          </ros>
+          <output_type>sensor_msgs/LaserScan</output_type>
+          <frame_name>sllidar_base_link</frame_name>
+      </plugin>
+  </sensor>
+
   </gazebo>
 
 

@@ -52,12 +52,12 @@ def generate_launch_description():
         arguments=['-d', LaunchConfiguration('rvizconfig')]
     ))
 
-    ld.add_action(IncludeLaunchDescription(
-        PythonLaunchDescriptionSource(
-            [PathJoinSubstitution([FindPackageShare('gazebo_ros'), 'launch', 'gazebo.launch.py'])]
-        ),
-        launch_arguments={'world': LaunchConfiguration('world')}.items()
-    ))
+    # ld.add_action(IncludeLaunchDescription(
+    #     PythonLaunchDescriptionSource(
+    #         [PathJoinSubstitution([FindPackageShare('gazebo_ros'), 'launch', 'gazebo.launch.py'])]
+    #     ),
+    #     launch_arguments={'world': LaunchConfiguration('world')}.items()
+    # ))
     
     # # Optionally, provide a world file (can be empty world or any custom world)
     # world_path = os.path.join(gazebo_ros_share, 'worlds', 'empty.world')
