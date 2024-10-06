@@ -143,15 +143,6 @@
   </joint>
 
   <gazebo reference="sllidar_base_link">
-    <!-- <sensor type="ray" name="lidar_sensor">
-      <visualize>true</visualize>
-      <update_rate>30.0</update_rate>
-      <plugin name="gazebo_ros_ray_sensor" filename="libgazebo_ros_ray_sensor.so">
-        <topic>/scan</topic>
-        <frameName>sllidar_base_link</frameName>
-      </plugin>
-    </sensor> -->
-
     <sensor name="lidar" type="ray">
       <pose> 0 0 0 0 0 0 </pose>
       <visualize>true</visualize>
@@ -160,8 +151,8 @@
           <scan>
               <horizontal>
                   <samples>360</samples>
-                  <min_angle>-3.14</min_angle>
-                  <max_angle>3.14</max_angle>
+                  <min_angle>-${pi}</min_angle>
+                  <max_angle>${pi}</max_angle>
               </horizontal>
           </scan>
           <range>
@@ -178,6 +169,10 @@
       </plugin>
   </sensor>
 
+  </gazebo>
+
+  <gazebo>
+    <plugin name="car_gazebo_plugin" filename="libcar_gazebo_plugin.so"></plugin>
   </gazebo>
 
 

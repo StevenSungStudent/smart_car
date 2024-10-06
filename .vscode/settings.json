@@ -9,5 +9,6 @@
     ],
     "files.associations": {
         "qpointf": "cpp"
-    }
+    },
+    "ros.distro": "humble"
 }

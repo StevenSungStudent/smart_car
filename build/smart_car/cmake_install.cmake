@@ -47,6 +47,7 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
     "/home/steven/ros2_ws/src/smart_car/launch"
     "/home/steven/ros2_ws/src/smart_car/rviz"
     "/home/steven/ros2_ws/src/smart_car/urdf"
+    "/home/steven/ros2_ws/src/smart_car/world"
     )
 endif()
 

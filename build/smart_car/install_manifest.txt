@@ -1,7 +1,9 @@
 /home/steven/ros2_ws/install/smart_car/share/smart_car/launch/simulation.launch.py
+/home/steven/ros2_ws/install/smart_car/share/smart_car/launch/gazebo.launch.py
 /home/steven/ros2_ws/install/smart_car/share/smart_car/rviz/urdf_config.rviz
 /home/steven/ros2_ws/install/smart_car/share/smart_car/urdf/smartcar.urdf
 /home/steven/ros2_ws/install/smart_car/share/smart_car/urdf/smartcar.urdf.xacro
+/home/steven/ros2_ws/install/smart_car/share/smart_car/world/smalltown.world
 /home/steven/ros2_ws/install/smart_car/share/ament_index/resource_index/package_run_dependencies/smart_car
 /home/steven/ros2_ws/install/smart_car/share/ament_index/resource_index/parent_prefix_path/smart_car
 /home/steven/ros2_ws/install/smart_car/share/smart_car/environment/ament_prefix_path.sh
