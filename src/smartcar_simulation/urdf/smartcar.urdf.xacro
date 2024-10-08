@@ -150,10 +150,8 @@
       <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.02"/>
       <origin xyz="0 0 0"/>
     </inertial>
-  
   </link>
   
-
   <joint name="imu_joint" type="fixed">
     <parent link="base_link" />
     <child link="imu_link"/>
@@ -164,10 +162,9 @@
     <sensor type="imu" name="imu_sensor">
       <always_on>true</always_on>
       <update_rate>30.0</update_rate>
-      <plugin name="gazebo_ros_imu" filename="libgazebo_ros_imu.so">
+      <plugin name="gazebo_ros_imu" filename="libgazebo_ros_imu_sensor.so">
         <ros>
-          <namespace>/imu</namespace>
-          <remapping>~/out:=/imu/data</remapping>
+          <remapping>~/out:=/imu_data</remapping>
         </ros>
       </plugin>
     </sensor>
