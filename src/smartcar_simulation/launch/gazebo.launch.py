@@ -28,6 +28,13 @@ def generate_launch_description():
                                         description='Path to the Gazebo world file'))
 
 
+    ld.add_action(Node(
+        package="smartcar_simulation",
+        executable="smartcar_simulation",
+        name='odometry',
+        output='screen',
+        parameters=[]
+    ))
 
     ld.add_action(Node(
         package='robot_state_publisher',
@@ -51,16 +58,6 @@ def generate_launch_description():
         output='screen',
         arguments=['-d', LaunchConfiguration('rvizconfig')]
     ))
-
-    # ld.add_action(IncludeLaunchDescription(
-    #     PythonLaunchDescriptionSource(
-    #         [PathJoinSubstitution([FindPackageShare('gazebo_ros'), 'launch', 'gazebo.launch.py'])]
-    #     ),
-    #     launch_arguments={'world': LaunchConfiguration('world')}.items()
-    # ))
-    
-    # # Optionally, provide a world file (can be empty world or any custom world)
-    # world_path = os.path.join(gazebo_ros_share, 'worlds', 'empty.world')
     
     ld.add_action(DeclareLaunchArgument(name='world', default_value=default_world_path,
                                         description='Path to the Gazebo world file'))

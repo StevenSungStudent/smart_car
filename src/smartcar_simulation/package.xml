@@ -15,6 +15,11 @@
 
   <depend>rclcpp</depend>
   <depend>rclpy</depend>
+  <depend>tf2</depend>
+  <depend>tf2_ros</depend>
+  <depend>nav_msgs</depend>
+  <depend>car_gazebo_plugin</depend>
+  <depend>smartcar_msgs</depend>
 
   <export>
     <build_type>ament_cmake</build_type>

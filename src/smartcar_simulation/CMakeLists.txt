@@ -13,14 +13,42 @@ find_package(rclcpp REQUIRED)
 find_package(rclpy REQUIRED)
 find_package(robot_state_publisher REQUIRED)
 find_package(gazebo REQUIRED)
+find_package(tf2 REQUIRED)
+find_package(tf2_ros REQUIRED)
+find_package(nav_msgs REQUIRED)
+find_package(geometry_msgs REQUIRED)
+find_package(smartcar_msgs)
 # uncomment the following section in order to fill in
 # further dependencies manually.
 # find_package(<dependency> REQUIRED)
 
 include_directories(include)
 
-install( DIRECTORY launch rviz urdf world
+add_executable(${PROJECT_NAME} 
+  src/main.cpp 
+  src/Odometry.cpp
+)
+
+ament_target_dependencies( ${PROJECT_NAME}
+  rclcpp
+  tf2
+  tf2_ros
+  nav_msgs
+  geometry_msgs
+  smartcar_msgs
+)
+
+target_include_directories(${PROJECT_NAME} PUBLIC
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include/${PROJECT_NAME}>
+  $<INSTALL_INTERFACE:include>
+)
+
+install( DIRECTORY launch rviz urdf world include
   DESTINATION share/${PROJECT_NAME})
+
+install(TARGETS ${PROJECT_NAME}
+  DESTINATION lib/${PROJECT_NAME}
+)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
