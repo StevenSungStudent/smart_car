@@ -41,14 +41,16 @@ def generate_launch_description():
         executable='robot_state_publisher',
         name='robot_state_publisher_smartcar',
         output='screen',
-        arguments=[LaunchConfiguration('smartcar_model')]
+        arguments=[LaunchConfiguration('smartcar_model')],
+        parameters=[{'use_sim_time': True}]
     ))
 
     ld.add_action(Node(
         package='joint_state_publisher_gui',
         executable='joint_state_publisher_gui',
         name='joint_state_publisher_gui',
-        output='screen'
+        output='screen',
+        parameters=[{'use_sim_time': True}]
     ))
 
     ld.add_action(Node(
@@ -56,7 +58,8 @@ def generate_launch_description():
         executable='rviz2',
         name='rviz2',
         output='screen',
-        arguments=['-d', LaunchConfiguration('rvizconfig')]
+        arguments=['-d', LaunchConfiguration('rvizconfig')],
+        parameters=[{'use_sim_time': True}]
     ))
     
     ld.add_action(DeclareLaunchArgument(name='world', default_value=default_world_path,
@@ -75,7 +78,8 @@ def generate_launch_description():
         executable='spawn_entity.py',
         name='spawn_entity',
         arguments=['-entity', 'smartcar', '-file', LaunchConfiguration('smartcar_model')],
-        output='screen'
+        output='screen',
+        parameters=[{'use_sim_time': True}]
     ))
 
     return ld
