@@ -33,7 +33,7 @@ def generate_launch_description():
         executable="smartcar_simulation",
         name='odometry',
         output='screen',
-        parameters=[]
+        parameters=[{'use_sim_time': True}]
     ))
 
     ld.add_action(Node(
