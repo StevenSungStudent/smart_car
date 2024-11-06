@@ -19,18 +19,17 @@ find_package(nav_msgs REQUIRED)
 find_package(geometry_msgs REQUIRED)
 find_package(tf2_geometry_msgs REQUIRED)
 find_package(smartcar_msgs)
-# uncomment the following section in order to fill in
-# further dependencies manually.
-# find_package(<dependency> REQUIRED)
+find_package(sensor_msgs REQUIRED)
 
 include_directories(include)
 
-add_executable(${PROJECT_NAME} 
-  src/main.cpp 
+# Add the Odometry executable
+add_executable(Odometry 
+  src/OdometryMain.cpp 
   src/Odometry.cpp
 )
 
-ament_target_dependencies( ${PROJECT_NAME}
+ament_target_dependencies(Odometry
   rclcpp
   tf2
   tf2_ros
@@ -40,15 +39,43 @@ ament_target_dependencies( ${PROJECT_NAME}
   smartcar_msgs
 )
 
-target_include_directories(${PROJECT_NAME} PUBLIC
+# Add the JointStatePublisher executable
+add_executable(JointStatePublisher
+  src/JointStatePublisherMain.cpp 
+  src/JointStatePublisher.cpp 
+)
+
+ament_target_dependencies(JointStatePublisher
+  rclcpp
+  tf2
+  tf2_ros
+  tf2_geometry_msgs
+  nav_msgs
+  geometry_msgs
+  smartcar_msgs
+  sensor_msgs
+)
+
+# Include directories for both executables
+target_include_directories(Odometry PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include/${PROJECT_NAME}>
   $<INSTALL_INTERFACE:include>
 )
 
+target_include_directories(JointStatePublisher PUBLIC
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include/${PROJECT_NAME}>
+  $<INSTALL_INTERFACE:include>
+)
+
+# Install both executables
 install( DIRECTORY launch rviz urdf world include
   DESTINATION share/${PROJECT_NAME})
 
-install(TARGETS ${PROJECT_NAME}
+install(TARGETS Odometry
+  DESTINATION lib/${PROJECT_NAME}
+)
+
+install(TARGETS JointStatePublisher
   DESTINATION lib/${PROJECT_NAME}
 )
 

@@ -30,8 +30,16 @@ def generate_launch_description():
 
     ld.add_action(Node(
         package="smartcar_simulation",
-        executable="smartcar_simulation",
+        executable="Odometry",
         name='odometry',
+        output='screen',
+        parameters=[{'use_sim_time': True}]
+    ))
+    
+    ld.add_action(Node(
+        package="smartcar_simulation",
+        executable="JointStatePublisher",
+        name='JointStatePublisher',
         output='screen',
         parameters=[{'use_sim_time': True}]
     ))
