@@ -20,6 +20,7 @@
   <depend>nav_msgs</depend>
   <depend>car_gazebo_plugin</depend>
   <depend>smartcar_msgs</depend>
+  <depend>robot_localizaton</depend>
 
   <export>
     <build_type>ament_cmake</build_type>

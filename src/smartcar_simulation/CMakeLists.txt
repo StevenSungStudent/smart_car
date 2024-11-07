@@ -67,10 +67,11 @@ target_include_directories(JointStatePublisher PUBLIC
   $<INSTALL_INTERFACE:include>
 )
 
-# Install both executables
-install( DIRECTORY launch rviz urdf world include
+
+install( DIRECTORY launch rviz urdf world include config
   DESTINATION share/${PROJECT_NAME})
 
+  # Install both executables
 install(TARGETS Odometry
   DESTINATION lib/${PROJECT_NAME}
 )
