@@ -18,6 +18,7 @@ def generate_launch_description():
     default_config_config_path = PathJoinSubstitution([smartcar_sim_path, 'config', 'ekf.yaml'])
 
     default_world_path = PathJoinSubstitution([smartcar_sim_path, 'world', 'smalltown.world'])
+    default_map_path = PathJoinSubstitution([smartcar_sim_path, 'map', 'smalltown_world.yaml'])
 
     ld.add_action(DeclareLaunchArgument(name='rvizconfig', default_value=default_rviz_config_path,
                                         description='Absolute path to rviz config file'))
@@ -30,7 +31,18 @@ def generate_launch_description():
     
     ld.add_action(DeclareLaunchArgument(name='ekf_config', default_value=default_config_config_path,
                                         description='Path to the ekf config file'))
+    
+    ld.add_action(DeclareLaunchArgument(name='map_directory', default_value=default_map_path,
+                                        description='Path to the ekf map file'))
 
+
+    # nav2_bringup_path = PathJoinSubstitution([FindPackageShare('nav2_bringup'), 'launch', 'bringup_launch.py'])
+    ld.add_action(IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(
+            [PathJoinSubstitution([FindPackageShare('nav2_bringup'), 'launch', 'bringup_launch.py'])]
+        ),
+        launch_arguments={'map': LaunchConfiguration('map_directory')}.items()
+    ))
 
     ld.add_action(Node(
         package="smartcar_simulation",
@@ -101,5 +113,5 @@ def generate_launch_description():
         output='screen',
         parameters=[{'use_sim_time': True}]
     ))
-
+    
     return ld

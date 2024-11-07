@@ -68,7 +68,7 @@ target_include_directories(JointStatePublisher PUBLIC
 )
 
 
-install( DIRECTORY launch rviz urdf world include config
+install( DIRECTORY launch rviz urdf world map include config
   DESTINATION share/${PROJECT_NAME})
 
   # Install both executables
