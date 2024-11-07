@@ -29,7 +29,6 @@ JointStatePublisher::~JointStatePublisher()
 
 }
 
-//TODO setting the velocity is not enought to make the wheels turn they also need a position to turn towards.
 void JointStatePublisher::joint_publisher_callback()
 {
     joint_states.header.stamp = this->get_clock()->now();
