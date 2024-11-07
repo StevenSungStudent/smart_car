@@ -17,16 +17,15 @@ Odometry::~Odometry()
 {
 }
 
-//if seetring ange > pi then steering angle -= pi *2
 void Odometry::status_callback(const smartcar_msgs::msg::Status & msg)
 {
     rclcpp::Time current_time = this->get_clock()->now();
     
     rclcpp::Duration time_step = current_time - last_time;
 
-    linear_velocity = calculate_linear_velocity(msg.engine_speed_rpm, 0.064);//TODO: non hard value for wheel diameter
-    angular_velocity = calculate_angular_velocity(linear_velocity, 0.257, msg.steering_angle_rad);//TODO: also hard value
-    phi = calculate_phi(phi, angular_velocity, time_step.seconds());//TODO: what is time step
+    linear_velocity = calculate_linear_velocity(msg.engine_speed_rpm, 0.064);//wheel diameter
+    angular_velocity = calculate_angular_velocity(linear_velocity, 0.257, msg.steering_angle_rad);//distance between rear and front axle
+    phi = calculate_phi(phi, angular_velocity, time_step.seconds());
     x = calculate_x(x, linear_velocity, phi, time_step.seconds());
     y = calculate_y(y, linear_velocity, phi, time_step.seconds());
 
@@ -57,13 +56,13 @@ void Odometry::timer_callback()
 
     msg.pose.pose.orientation = tf2::toMsg(quaternion);
 
-    msg.twist.twist.linear.x = linear_velocity;//linear
+    msg.twist.twist.linear.x = linear_velocity;
     msg.twist.twist.linear.y = 0;
     msg.twist.twist.linear.z = 0;
 
     msg.twist.twist.angular.x = 0;
     msg.twist.twist.angular.y = 0;
-    msg.twist.twist.angular.z = angular_velocity;//angular
+    msg.twist.twist.angular.z = angular_velocity;
 
     msg.twist.covariance = {
         0.1,     0.0,     0.0,     0.0,     0.0,     0.0,   
