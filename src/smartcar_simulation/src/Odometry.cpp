@@ -9,7 +9,7 @@ Odometry::Odometry() : Node("odometry_node"), linear_velocity(0), angular_veloci
 {
     status_subscription_ = this->create_subscription<smartcar_msgs::msg::Status>("smartcar/vehicle_status", 10, std::bind(&Odometry::status_callback, this, std::placeholders::_1));
     publisher_ = this->create_publisher<nav_msgs::msg::Odometry>("/smart_car/wheel/odom", 10);
-    timer_ = this->create_wall_timer( 500ms, std::bind(&Odometry::timer_callback, this));
+    timer_ = this->create_wall_timer( 50ms, std::bind(&Odometry::timer_callback, this));
     last_time = this->get_clock()->now();
 }
 
