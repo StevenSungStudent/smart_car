@@ -38,9 +38,11 @@ void JointStatePublisher::joint_publisher_callback()
 
 void JointStatePublisher::status_callback(const smartcar_msgs::msg::Status & msg)
 {
+    double radians_delta = (msg.engine_speed_rpm * ((2 * M_PI) / 60)) * 0.5;//rpm * ((2 * pi) / 60) = radiance per second * time(the wall timer value) = radiance delta.
+
     for (unsigned short i = 0; i < joint_states.velocity.size(); ++i)
     {
-        joint_states.velocity.at(i) = msg.engine_speed_rpm;
+        joint_states.position.at(i) += radians_delta;
     }
 
     joint_states.position.at(front_left_wheel_steer_joint) = msg.steering_angle_rad;
