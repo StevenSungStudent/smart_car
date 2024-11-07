@@ -1,0 +1,5 @@
+<sdf version="1.6">
+  <world name="default">
+    <plugin name="car_gazebo_plugin" filename="libcar_gazebo_plugin.so"/>
+  </world>
+</sdf>
