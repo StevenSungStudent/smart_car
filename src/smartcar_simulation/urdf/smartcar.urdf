@@ -8,6 +8,22 @@
   <!-- Body -->
   <link name="base_link">
   </link>
+  <link name="base_footprint">
+    <inertial>
+      <mass value="1"/>
+      <inertia ixx="0.01" ixy="0.0" ixz="0.0" iyy="0.01" iyz="0.0" izz="0.02"/>
+      <origin xyz="0 0 0"/>
+    </inertial>
+    <visual>
+      <geometry>
+        <box size="0.257 0.17 0.01"/>
+      </geometry>
+    </visual>
+  </link>
+  <joint name="base_footprint_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="base_footprint"/>
+  </joint>
   <link name="chassis_link">
     <inertial>
       <mass value="3.0"/>

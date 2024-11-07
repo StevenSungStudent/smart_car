@@ -14,7 +14,7 @@ def generate_launch_description():
     # gazebo_ros_share = get_package_share_directory('gazebo_ros')
 
     default_model_path = PathJoinSubstitution([smartcar_sim_path, 'urdf', 'smartcar.urdf'])
-    default_rviz_config_path = PathJoinSubstitution([smartcar_sim_path, 'rviz', 'urdf_config.rviz'])
+    default_rviz_config_path = PathJoinSubstitution([smartcar_sim_path, 'rviz', 'nav2_config.rviz'])
     default_config_config_path = PathJoinSubstitution([smartcar_sim_path, 'config', 'ekf.yaml'])
 
     default_world_path = PathJoinSubstitution([smartcar_sim_path, 'world', 'smalltown.world'])
@@ -33,16 +33,7 @@ def generate_launch_description():
                                         description='Path to the ekf config file'))
     
     ld.add_action(DeclareLaunchArgument(name='map_directory', default_value=default_map_path,
-                                        description='Path to the ekf map file'))
-
-
-    # nav2_bringup_path = PathJoinSubstitution([FindPackageShare('nav2_bringup'), 'launch', 'bringup_launch.py'])
-    ld.add_action(IncludeLaunchDescription(
-        PythonLaunchDescriptionSource(
-            [PathJoinSubstitution([FindPackageShare('nav2_bringup'), 'launch', 'bringup_launch.py'])]
-        ),
-        launch_arguments={'map': LaunchConfiguration('map_directory')}.items()
-    ))
+                                        description='Path to the map file'))
 
     ld.add_action(Node(
         package="smartcar_simulation",
@@ -76,15 +67,14 @@ def generate_launch_description():
         arguments=[LaunchConfiguration('smartcar_model')],
         parameters=[{'use_sim_time': True}]
     ))
-
-    ld.add_action(Node(
-        package='joint_state_publisher_gui',
-        executable='joint_state_publisher_gui',
-        name='joint_state_publisher_gui',
-        output='screen',
-        parameters=[{'use_sim_time': True}]
+    
+    ld.add_action(IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(
+            [PathJoinSubstitution([FindPackageShare('nav2_bringup'), 'launch', 'bringup_launch.py'])]
+        ),
+        launch_arguments={'map': LaunchConfiguration('map_directory')}.items()
     ))
-
+    
     ld.add_action(Node(
         package='rviz2',
         executable='rviz2',
@@ -102,7 +92,7 @@ def generate_launch_description():
         PythonLaunchDescriptionSource(
             [PathJoinSubstitution([FindPackageShare('gazebo_ros'), 'launch', 'gazebo.launch.py'])]
         ),
-        launch_arguments={'world': LaunchConfiguration('world'),'extra_args': '-s libgazebo_ros_init.so -s libgazebo_ros_factory.so'}.items()
+        launch_arguments={'world': LaunchConfiguration('world')}.items()
     ))
 
     ld.add_action(Node(
