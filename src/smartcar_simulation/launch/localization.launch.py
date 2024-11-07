@@ -51,7 +51,7 @@ def generate_launch_description():
     ld.add_action(Node(
         package="robot_localization",
         executable="ekf_node",
-        name='ekf_filter_bnode',
+        name='ekf_filter_node',
         output='screen',
         parameters=[LaunchConfiguration('ekf_config'), {'use_sim_time': True}]
     ))
